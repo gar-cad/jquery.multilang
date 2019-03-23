@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>jquery.multilang</title>
+		<link href='http://fonts.googleapis.com/css?family=Tenor+Sans' rel='stylesheet' type='text/css'>
+		<link rel="stylesheet" type="text/css" href="index-src/main.css">
+		<script src="http://code.jquery.com/jquery-2.0.1.min.js"></script>
+		<script src="src/langs.min.js"></script>
+		<script src="src/jquery.multilang.min.js"></script>
+		<script>
+		$(function () {
+			$('#ex1').multilang();
+			$('#ex2').multilang({
+				defaultLang:'cy',
+				menu: false
+			});
+			$('#ex3').multilang({
+				languages:{
+					'cy':{'name':'Welsh','nativeName':'Cymraeg'},'en':{'name':'English','nativeName':'English'}
+				}
+			});
+			$('#ex4').multilang({
+				pixFormat:'png',
+				pathToPix:'src'
+			});
+		});
+		</script>
+		<style>
+			#ex1, #ex2, #ex3, #ex4 {
+				color: #333333 !important;
+			}
+			#ex1 h1, #ex2 h1, #ex3 h1, #ex4 h1 {
+				color: #999999;
+			}
+			#ex1 a:link, #ex1 a:visited, #ex2 a:link, #ex2 a:visited, #ex3 a:link, #ex3 a:visited{
+				color: #0000FF;
+				padding: 1px;
+			}
+			#ex1 a:hover, #ex1 a:active, #ex2 a:hover, #ex2 a:active, #ex3 a:hover, #ex3 a:active {
+				color: #FFFFFF;
+				background-color: #0000FF;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="container">
+			<header>
+				<span class="version">jquery.multilang plugin: Version 1.0</span>
+				<h1>jquery.multilang</h1>
+				<h2>Author: <a href="https://github.com/gar-cad" rel="author">Gareth Cadwaladr</a></h2>
+			</header>
+			<ol>
+				<li><a href="#basic">Basic use (using complete list of languages [12kb])</a></li>
+				<li><a href="#param1">Specifying default language and disabling menu</a></li>
+				<li><a href="#param2">Custom languages</a></li>
+				<li><a href="#param3">Images in menu</a></li>
+			</ol>
+			<section class="example" id="basic">
+				<h1>Basic use (using complete list of languages [12kb])</h1>
+				<h2>Example</h2>
+				<section class="display">
+					<div id="ex1">
+						<h1 class="multilang" lang="cy">Teitl</h1>
+						<h1 class="multilang" lang="en">Title</h1>
+						<p class="multilang" lang="cy">Dyma fy nghynnwys yn Gymraeg.</p>
+						<p class="multilang" lang="en">Here is my English content.</p>
+					</div>
+				</section>
+				<h2>html</h2>
+				<section class="code">
+					<code>
+						&lt;div id="ex1"&gt;<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&lt;h1 class="multilang" lang="cy"&gt;Teitl&lt;/h1&gt;<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&lt;h1 class="multilang" lang="en"&gt;Title&lt;/h1&gt;<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&lt;p class="multilang" lang="cy"&gt;Dyma fy nghynnwys yn Gymraeg.&lt;/p&gt;<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&lt;p class="multilang" lang="en"&gt;Here is my English content.&lt;/p&gt;<br>
+						&lt;/div&gt;
+					</code>
+				</section>
+				<h2>javascript</h2>
+				<section class="code">
+					<code>
+						&lt;script src="http://code.jquery.com/jquery-2.0.1.min.js"&gt;&lt;/script&gt;<br>
+						&lt;script src="src/langs.min.js"&gt;&lt;/script&gt;<br>
+						&lt;script src="src/jquery.multilang.js"&gt;&lt;/script&gt;<br>
+						&lt;script&gt;<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;$(function () {<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$('#ex1').multilang();<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;});<br>
+						&lt;/script&gt;
+					</code>
+				</section>
+				<h2>css</h2>
+				<section class="code">
+					<code>
+						#ex1 {<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;color: #333333 !important;<br>
+						}<br>
+						#ex1 h1 {<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;color: #999999;<br>
+						}<br>
+						#ex1 a:link, #ex1 a:visited {<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;color: #0000FF;<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;padding: 1px;<br>
+						}<br>
+						#ex1 a:hover, #ex1 a:active {<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;color: #FFFFFF;<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;background-color: #0000FF;<br>
+						}
+					</code>
+				</section>	
+				<a href="#container" class="topLink">Top of page</a>
+			</section>
+			<section class="example" id="param1">
+				<h1>Specifying default language and disabling menu</h1>
+				<h2>Example</h2>
+				<section class="display">
+					<div id="ex2">
+						<h1 class="multilang" lang="cy">Teitl</h1>
+						<h1 class="multilang" lang="en">Title</h1>
+						<p class="multilang" lang="cy">Dyma fy nghynnwys yn Gymraeg. Mae'r querystring dal yn gweithio. <a href="?lang=en">English Version</a></p>
+						<p class="multilang" lang="en">Here is my English content. The querystring still works. <a href="?lang=cy">Welsh Version</a></p>
+					</div>
+				</section>
+				<h2>html</h2>
+				<section class="code">
+					<code>
+						&lt;div id="ex2"&gt;<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&lt;h1 class="multilang" lang="cy"&gt;Teitl&lt;/h1&gt;<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&lt;h1 class="multilang" lang="en"&gt;Title&lt;/h1&gt;<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&lt;p class="multilang" lang="cy"&gt;Dyma fy nghynnwys yn Gymraeg. Mae'r querystring dal yn gweithio. &lt;a href="?lang=en"&gt;English Version&lt;/a&gt;&lt;/p&gt;<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&lt;p class="multilang" lang="en"&gt;Here is my English content. The querystring still works. &lt;a href="?lang=cy"&gt;Welsh Version&lt;/a&gt;&lt;/p&gt;<br>
+						&lt;/div&gt;
+					</code>
+				</section>
+				<h2>javascript</h2>
+				<section class="code">
+					<code>
+						&lt;script src="http://code.jquery.com/jquery-2.0.1.min.js"&gt;&lt;/script&gt;<br>
+						&lt;script src="src/jquery.multilang.js"&gt;&lt;/script&gt;<br>
+						&lt;script&gt;<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;$(function () {<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$('#ex2').multilang({<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;defaultLang:'cy',<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;menu: false<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;});<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;});<br>
+						&lt;/script&gt;
+					</code>
+				</section>
+				<h2>css</h2>
+				<section class="code">
+					<code>
+						#ex2 {<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;color: #333333 !important;<br>
+						}<br>
+						#ex2 h1 {<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;color: #999999;<br>
+						}<br>
+						#ex2 a:link, #ex2 a:visited {<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;color: #0000FF;<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;padding: 1px;<br>
+						}<br>
+						#ex2 a:hover, #ex2 a:active {<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;color: #FFFFFF;<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;background-color: #0000FF;<br>
+						}
+					</code>
+				</section>	
+				<a href="#container" class="topLink">Top of page</a>
+			</section>
+			<section class="example" id="param2">
+				<h1>Custom languages</h1>
+				<h2>Example</h2>
+				<section class="display">
+					<div id="ex3">
+						<h1 class="multilang" lang="cy">Teitl</h1>
+						<h1 class="multilang" lang="en">Title</h1>
+						<p class="multilang" lang="cy">Dyma fy nghynnwys yn Gymraeg.</p>
+						<p class="multilang" lang="en">Here is my English content.</p>
+					</div>
+				</section>
+				<h2>html</h2>
+				<section class="code">
+					<code>
+						&lt;div id="ex3"&gt;<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&lt;h1 class="multilang" lang="cy"&gt;Teitl&lt;/h1&gt;<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&lt;h1 class="multilang" lang="en"&gt;Title&lt;/h1&gt;<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&lt;p class="multilang" lang="cy"&gt;Dyma fy nghynnwys yn Gymraeg.&lt;/p&gt;<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&lt;p class="multilang" lang="en"&gt;Here is my English content.&lt;/p&gt;<br>
+						&lt;/div&gt;
+					</code>
+				</section>
+				<h2>javascript</h2>
+				<section class="code">
+					<code>
+						&lt;script src="http://code.jquery.com/jquery-2.0.1.min.js"&gt;&lt;/script&gt;<br>
+						&lt;script src="src/jquery.multilang.js"&gt;&lt;/script&gt;<br>
+						&lt;script&gt;<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;$(function () {<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$('#ex3').multilang({<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;languages:{<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'cy':{'name':'Welsh','nativeName':'Cymraeg'},<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'en':{'name':'English','nativeName':'English'}<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;});<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;});<br>
+						&lt;/script&gt;
+					</code>
+				</section>
+				<h2>css</h2>
+				<section class="code">
+					<code>
+						#ex3 {<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;color: #333333 !important;<br>
+						}<br>
+						#ex3 h1 {<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;color: #999999;<br>
+						}<br>
+						#ex3 a:link, #ex3 a:visited {<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;color: #0000FF;<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;padding: 1px;<br>
+						}<br>
+						#ex3 a:hover, #ex3 a:active {<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;color: #FFFFFF;<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;background-color: #0000FF;<br>
+						}
+					</code>
+				</section>	
+				<a href="#container" class="topLink">Top of page</a>
+			</section>
+			<section class="example" id="param3">
+				<h1>Images in menu</h1>
+				<h2>Example</h2>
+				<section class="display">
+					<div id="ex4">
+						<h1 class="multilang" lang="cy">Teitl</h1>
+						<h1 class="multilang" lang="en">Title</h1>
+						<p class="multilang" lang="cy">Dyma fy nghynnwys yn Gymraeg.</p>
+						<p class="multilang" lang="en">Here is my English content.</p>
+					</div>
+				</section>
+				<h2>html</h2>
+				<section class="code">
+					<code>
+						&lt;div id="ex4"&gt;<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&lt;h1 class="multilang" lang="cy"&gt;Teitl&lt;/h1&gt;<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&lt;h1 class="multilang" lang="en"&gt;Title&lt;/h1&gt;<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&lt;p class="multilang" lang="cy"&gt;Dyma fy nghynnwys yn Gymraeg.&lt;/p&gt;<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&lt;p class="multilang" lang="en"&gt;Here is my English content.&lt;/p&gt;<br>
+						&lt;/div&gt;
+					</code>
+				</section>
+				<h2>javascript</h2>
+				<section class="code">
+					<code>
+						&lt;script src="http://code.jquery.com/jquery-2.0.1.min.js"&gt;&lt;/script&gt;<br>
+						&lt;script src="src/jquery.multilang.js"&gt;&lt;/script&gt;<br>
+						&lt;script&gt;<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;$(function () {<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$('#ex3').multilang({<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;pixFormat:'png',<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;pathToPix:'src'<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;});<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;});<br>
+						&lt;/script&gt;
+					</code>
+				</section>
+				<h2>css</h2>
+				<section class="code">
+					<code>
+						#ex4 {<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;color: #333333 !important;<br>
+						}<br>
+						#ex4 h1 {<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;color: #999999;<br>
+						}<br>
+					</code>
+				</section>	
+				<a href="#container" class="topLink">Top of page</a>
+			</section>
+			<footer>
+				&copy; 2013 Gareth Cadwaladr
+			</footer>
+		</div>
+	</body>
+</html>
